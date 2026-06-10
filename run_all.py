@@ -7,6 +7,7 @@ from typing import Any
 from scrapers.transparencia_epublica import TransparenciaEPublicaScraper
 from scrapers.pmf_sc import PmfScScraper
 from scrapers.cigaobras import CigaObrasScraper
+from scrapers.geoportal_shp import GeoportalShpScraper
 
 
 def main() -> None:
@@ -101,6 +102,7 @@ def run_all() -> dict[str, dict[str, Any]]:
         ("transparencia", lambda: TransparenciaEPublicaScraper()),
         ("pmf_sc", lambda: PmfScScraper()),
         ("cigaobras", lambda: CigaObrasScraper()),
+        ("geoportal_shp", lambda: GeoportalShpScraper()),
     ]
 
     for scraper_key, scraper_factory in scrapers:

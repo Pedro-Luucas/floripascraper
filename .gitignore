@@ -62,3 +62,5 @@ htmlcov/
 *.crx
 geckodriver.log
 chromedriver.log
+
+/data
