@@ -27,10 +27,13 @@ floripascraper/
 │   ├── retry_handler.py # Retry com backoff para requisições HTTP
 │   └── robots_checker.py # Verificação de robots.txt
 ├── requirements.txt    # Dependências Python
+├── run_all.py          # Executa todos os scrapers
+├── upload_to_api.py    # Envia JSONs para a API CragAncora
 ├── .gitignore
 ├── CLAUDE.md
 ├── README.md
-└── PLANO.md
+├── PLANO.md
+└── guiaingestao.md     # Documentação da API
 ```
 
 ## Comandos Comuns
@@ -59,6 +62,21 @@ Get-ChildItem data\
 
 # Verificar conteúdo de um arquivo JSON
 Get-Content data\licitacoes.json | ConvertFrom-Json
+```
+
+### Upload para API (CragAncora)
+```powershell
+# Upload todos os JSONs para a API
+python upload_to_api.py
+
+# Upload arquivo específico
+python upload_to_api.py --file licitacoes.json
+
+# Upload e aguardar processamento (verificar status)
+python upload_to_api.py --check-status
+
+# Verificar status de um documento específico
+python upload_to_api.py --status <document_id>
 ```
 
 ## Regras de Desenvolvimento
@@ -108,3 +126,9 @@ Get-Content data\licitacoes.json | ConvertFrom-Json
 - Se site requer JS rendering, usar Selenium com Chrome headless
 - Verificar `robots.txt` e termos de uso antes de fazer scraping
 - Respeitar rate limits — adicionar delays entre requisições
+
+## Fluxo de Trabalho
+
+1. **Scraping**: `python run_all.py` → dados salvos em `data/*.json`
+2. **Upload**: `python upload_to_api.py` → envia JSONs para `ancora.craggroup.com`
+3. **Verificação**: `python upload_to_api.py --check-status` → aguarda processamento

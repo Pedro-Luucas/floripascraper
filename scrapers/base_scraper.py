@@ -11,7 +11,7 @@ from typing import Any
 import fake_useragent
 import requests
 
-from database.db_manager import insert_many
+from database.db_manager import append_data
 from utils.retry_handler import FailedUrlTracker, DEFAULT_MAX_RETRIES
 
 # Configure module logger
@@ -207,7 +207,7 @@ class BaseScraper:
         }
 
         try:
-            inserted_count = insert_many(table_name, data, metadata)
+            inserted_count = append_data(table_name, data, metadata)
             logger.info(f"Saved {inserted_count}/{len(data)} records to '{table_name}'")
             return inserted_count
         except Exception as e:

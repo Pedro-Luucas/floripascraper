@@ -49,12 +49,17 @@ floripascraper/
 
 ## Uso
 
-Executar um scraper específico:
+**1. Executar scrapers:**
 ```powershell
-python scrapers\nome_do_scraper.py
+python run_all.py
 ```
 
-Verificar dados coletados:
+**2. Enviar para API:**
+```powershell
+python upload_to_api.py
+```
+
+**3. Verificar dados coletados:**
 ```powershell
 # Listar arquivos JSON
 Get-ChildItem data\
